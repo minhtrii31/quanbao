@@ -1,0 +1,63 @@
+# dependencies
+/node_modules
+
+# local environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# tests and coverage
+/test
+/coverage
+
+# build and temporary output
+/dist
+/build
+/tmp
+/temp
+/.tmp
+
+# logs
+/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# uploaded/generated media
+/uploads
+/public/uploads
+/generated
+
+# secrets, certificates, and local credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.csr
+*.jks
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+*.keystore
+credentials.json
+service-account*.json
+firebase-adminsdk*.json
+google-credentials*.json
+
+# runtime caches and editor files
+/.cache
+.cache
+.eslintcache
+*.tsbuildinfo
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
