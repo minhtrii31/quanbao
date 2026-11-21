@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:ui": "playwright test",
+    "test:redesign": "playwright test -c qa/playwright.config.ts",
     "test:ui:headed": "playwright test --headed"
   },
   "dependencies": {

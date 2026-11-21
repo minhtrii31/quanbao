@@ -40,11 +40,16 @@ const valueImages = [
 ];
 
 export const DEFAULT_HOME_CONTENT: HomeContent = {
-  heroImages: ["/assets/home/1.avif", "/assets/home/2.avif", "/assets/home/3.avif"],
+  heroImages: [
+    "/assets/home/1.avif",
+    "/assets/home/2.avif",
+    "/assets/home/3.avif",
+  ],
   overview: {
     title: "CÔNG TY TNHH ĐẦU TƯ XÂY DỰNG QUÂN BẢO",
     intro: [
-      "Công ty TNHH Đầu Tư Xây Dựng Quân Bảo đã có một quá trình phát triển từng bước và là một địa chỉ uy tín trong lĩnh vực xây dựng và thiết kế. Với nền tảng kinh nghiệm và sự chuyên nghiệp, chúng tôi cam kết mang đến cho khách hàng những dịch vụ chất lượng và đáng tin cậy.",
+      "Quân Bảo cung cấp dịch vụ thiết kế, xây dựng và sửa chữa công trình tại TP. Hồ Chí Minh. Phạm vi thực hiện gồm nhà ở dân dụng, biệt thự và công trình công nghiệp.",
+      "Chúng tôi tiếp nhận nhu cầu, khảo sát hiện trạng và trao đổi cụ thể về hạng mục, vật tư, dự toán cùng tiến độ trước khi triển khai.",
     ],
     serviceIntro: "Chúng tôi chuyên cung cấp các dịch vụ sau:",
     services: [
@@ -64,17 +69,20 @@ export const DEFAULT_HOME_CONTENT: HomeContent = {
     {
       image: valueImages[0],
       title: "Uy tín",
-      description: "Uy tín là trên hết, tận dụng mọi cơ hội để chứng minh sự chân thành và trung thực.",
+      description:
+        "Uy tín là trên hết, tận dụng mọi cơ hội để chứng minh sự chân thành và trung thực.",
     },
     {
       image: valueImages[1],
       title: "Chất lượng",
-      description: "Chất lượng là ưu tiên hàng đầu, chúng tôi cam kết đảm bảo chất lượng tốt nhất.",
+      description:
+        "Chất lượng là ưu tiên hàng đầu, chúng tôi cam kết đảm bảo chất lượng tốt nhất.",
     },
     {
       image: valueImages[2],
       title: "Hiệu quả",
-      description: "Hiệu quả là trọng tâm của mọi hoạt động, tối ưu lợi ích cho khách hàng.",
+      description:
+        "Hiệu quả là trọng tâm của mọi hoạt động, tối ưu lợi ích cho khách hàng.",
     },
   ],
 };
@@ -83,8 +91,9 @@ export const DEFAULT_ABOUT_CONTENT: AboutContent = {
   hero: {
     title: "XÂY DỰNG TƯƠNG LAI VỮNG BỀN CÙNG",
     highlight: "QUÂN BẢO",
-    description: "Đơn vị uy tín hàng đầu trong lĩnh vực xây dựng và thiết kế công trình với hơn 10 năm kinh nghiệm.",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop&q=60",
+    description:
+      "Quân Bảo cung cấp dịch vụ thiết kế, xây dựng và sửa chữa công trình tại TP. Hồ Chí Minh. Chúng tôi thực hiện các hạng mục từ phần thô đến hoàn thiện cho nhà ở và nhà xưởng.",
+    image: "/assets/home/3.avif",
   },
   stats: [
     { number: "10+", label: "Năm kinh nghiệm" },
@@ -93,22 +102,56 @@ export const DEFAULT_ABOUT_CONTENT: AboutContent = {
     { number: "100%", label: "Khách hàng hài lòng" },
   ],
   values: [
-    { image: valueImages[0], title: "Uy tín", description: "Chân thành và trung thực trong mọi giao dịch." },
-    { image: valueImages[1], title: "Chất lượng", description: "Cam kết tiêu chuẩn cao nhất cho mọi công trình." },
-    { image: valueImages[2], title: "Hiệu quả", description: "Giải pháp tối ưu chi phí và tiến độ." },
+    {
+      image: valueImages[0],
+      title: "Uy tín",
+      description: "Chân thành và trung thực trong mọi giao dịch.",
+    },
+    {
+      image: valueImages[1],
+      title: "Chất lượng",
+      description: "Cam kết tiêu chuẩn cao nhất cho mọi công trình.",
+    },
+    {
+      image: valueImages[2],
+      title: "Hiệu quả",
+      description: "Giải pháp tối ưu chi phí và tiến độ.",
+    },
   ],
   timeline: [
-    { year: "2014", title: "Thành lập công ty", description: "Khởi đầu hành trình xây dựng" },
-    { year: "2016", title: "Mở rộng quy mô", description: "Tăng trưởng mạnh mẽ" },
-    { year: "2018", title: "Phát triển dịch vụ", description: "Đa dạng hóa lĩnh vực" },
-    { year: "2020", title: "Đạt chuẩn quốc tế", description: "Chất lượng vượt trội" },
+    {
+      year: "2014",
+      title: "Thành lập công ty",
+      description: "Khởi đầu hành trình xây dựng",
+    },
+    {
+      year: "2016",
+      title: "Mở rộng quy mô",
+      description: "Tăng trưởng mạnh mẽ",
+    },
+    {
+      year: "2018",
+      title: "Phát triển dịch vụ",
+      description: "Đa dạng hóa lĩnh vực",
+    },
+    {
+      year: "2020",
+      title: "Đạt chuẩn quốc tế",
+      description: "Chất lượng vượt trội",
+    },
     { year: "2022", title: "Bứt phá mới", description: "Công nghệ hiện đại" },
-    { year: "2024", title: "Tiếp tục phát triển", description: "Vươn tầm khu vực" },
+    {
+      year: "2024",
+      title: "Tiếp tục phát triển",
+      description: "Vươn tầm khu vực",
+    },
   ],
   vision: {
     title: "Tầm nhìn & Sứ mệnh",
-    vision: "Trở thành đơn vị xây dựng uy tín hàng đầu, mang thương hiệu Quân Bảo vươn tầm khu vực với chuẩn mực chất lượng quốc tế.",
-    mission: "Cung cấp giải pháp xây dựng chất lượng cao, hiệu quả cho khách hàng, đồng thời xây dựng đội ngũ chuyên nghiệp và bền vững.",
+    vision:
+      "Trở thành đơn vị xây dựng uy tín hàng đầu, mang thương hiệu Quân Bảo vươn tầm khu vực với chuẩn mực chất lượng quốc tế.",
+    mission:
+      "Cung cấp giải pháp xây dựng chất lượng cao, hiệu quả cho khách hàng, đồng thời xây dựng đội ngũ chuyên nghiệp và bền vững.",
   },
 };
 

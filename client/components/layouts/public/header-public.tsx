@@ -1,16 +1,11 @@
+import { getSiteSettings } from "@/lib/settings";
 import NavHeader from "./header/nav-header";
-import TopHeader from "./header/top-header";
 
-export default function HeaderPublic() {
+export default async function HeaderPublic() {
+  const { company } = await getSiteSettings();
   return (
-    <>
-      <header className="w-full">
-        <div className="mx-auto w-full max-w-7xl">
-          <TopHeader />
-        </div>
-        <div className="w-full border-t border-border" />
-      </header>
-      <NavHeader />
-    </>
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-white shadow-[0_2px_12px_#25221105]">
+      <NavHeader phone={company.phone} phoneRaw={company.phoneRaw} />
+    </header>
   );
 }

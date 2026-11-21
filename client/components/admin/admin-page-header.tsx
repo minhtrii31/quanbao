@@ -17,18 +17,18 @@ export function AdminPageHeader({
   return (
     <div
       className={cn(
-        "mb-6 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+        "mb-8 flex min-w-0 flex-col gap-5 border-b border-border pb-7 sm:flex-row sm:items-center sm:justify-between",
         className,
       )}
     >
       <div className="flex min-w-0 items-start gap-3">
         {icon && (
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-primary/10 text-primary">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-primary/15 bg-primary/8 text-primary">
             {icon}
           </div>
         )}
         <div className="min-w-0">
-          <h1 className="text-2xl font-semibold tracking-normal text-foreground">
+          <h1 className="text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
             {title}
           </h1>
           {description && (

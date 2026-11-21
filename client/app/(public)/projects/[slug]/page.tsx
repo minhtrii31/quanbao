@@ -4,7 +4,8 @@ import { notFound, redirect } from "next/navigation";
 import { Building2, CalendarDays, Star } from "lucide-react";
 import { getProject } from "@/lib/api/projects";
 import { ContentRenderer } from "@/components/editor/ContentRenderer";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import ContactBanner from "@/components/public/contact-banner";
 import { CmsImage } from "@/components/public/cms-image";
 
 const isObjectId = (value: string) => /^[a-f\d]{24}$/i.test(value);
@@ -49,19 +50,23 @@ export default async function ProjectDetailPage({
 
   return (
     <article className="min-h-full bg-background">
-      <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12 lg:px-6">
-        <Button variant="ghost" asChild className="rounded-none mb-6">
-          <Link href="/projects" className="underline underline-offset-4">
+      <div className="mx-auto w-full max-w-[1176px] px-5 py-10 sm:px-8 sm:py-16 lg:px-12">
+        <div className="mb-9">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-primary"
+          >
+            <ArrowLeft className="size-3.5" />
             Quay lại dự án
           </Link>
-        </Button>
+        </div>
 
         <div className="grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.8fr)] lg:gap-8">
           <div className="min-w-0">
-            <span className="inline-flex max-w-full rounded-none bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground">
+            <span className="inline-flex max-w-full rounded-none bg-primary/8 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">
               {project.category}
             </span>
-            <h1 className="mt-4 break-words text-2xl font-bold leading-tight text-foreground sm:text-4xl">
+            <h1 className="mt-4 break-words text-3xl font-medium leading-[1.15] tracking-tight text-foreground sm:text-5xl">
               {project.title}
             </h1>
             <p className="mt-4 break-words text-base leading-relaxed text-muted-foreground">
@@ -69,7 +74,7 @@ export default async function ProjectDetailPage({
             </p>
           </div>
 
-          <div className="min-w-0 space-y-3 border border-border bg-card p-4 sm:p-5">
+          <div className="min-w-0 space-y-5 border-l-2 border-primary bg-muted/60 p-5 sm:p-7">
             {project.client && (
               <div className="flex min-w-0 gap-3 text-sm">
                 <Building2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -106,7 +111,7 @@ export default async function ProjectDetailPage({
           </div>
         </div>
 
-        <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden">
+        <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden">
           <CmsImage
             src={project.image}
             alt={project.title}
@@ -115,9 +120,13 @@ export default async function ProjectDetailPage({
         </div>
 
         {project.content && (
-          <ContentRenderer content={project.content} className="mt-8" />
+          <ContentRenderer
+            content={project.content}
+            className="mt-10 text-base leading-8"
+          />
         )}
       </div>
+      <ContactBanner />
     </article>
   );
 }

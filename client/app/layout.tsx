@@ -18,7 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(siteUrl),
     title,
     description,
-    keywords: "xây nhà, sửa nhà, thiết kế kiến trúc, xây dựng, Quân Bảo, TP.HCM",
+    keywords:
+      "xây nhà, sửa nhà, thiết kế kiến trúc, xây dựng, Quân Bảo, TP.HCM",
     alternates: {
       canonical: "/",
     },
@@ -53,7 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="h-full antialiased font-sans">
+    <html
+      lang="vi"
+      data-scroll-behavior="smooth"
+      className="h-full antialiased font-sans"
+    >
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           {children}

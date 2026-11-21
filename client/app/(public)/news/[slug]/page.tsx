@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { CalendarDays } from "lucide-react";
 import { getNewsBySlug } from "@/lib/api/news";
 import { ContentRenderer } from "@/components/editor/ContentRenderer";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import ContactBanner from "@/components/public/contact-banner";
 import { CmsImage } from "@/components/public/cms-image";
 
 export async function generateMetadata({
@@ -46,29 +47,35 @@ export default async function NewsDetailPage({
 
   return (
     <article className="min-h-full bg-background">
-      <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:py-12 lg:px-6">
-        <Button variant="ghost" asChild className="rounded-none mb-6">
-          <Link href="/news" className="underline underline-offset-4">
+      <div className="mx-auto w-full max-w-[1000px] px-5 py-10 sm:px-8 sm:py-16 lg:px-12">
+        <div className="mb-9">
+          <Link
+            href="/news"
+            className="inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-primary"
+          >
+            <ArrowLeft className="size-3.5" />
             Quay lại tin tức
           </Link>
-        </Button>
+        </div>
         <div className="min-w-0 space-y-4">
-          <span className="inline-flex max-w-full rounded-none bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground">
+          <span className="inline-flex max-w-full rounded-none bg-primary/8 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-primary">
             {news.category}
           </span>
-          <h1 className="break-words text-2xl font-bold leading-tight text-foreground sm:text-4xl">
+          <h1 className="break-words text-3xl font-medium leading-[1.15] tracking-tight text-foreground sm:text-5xl">
             {news.title}
           </h1>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <CalendarDays className="h-4 w-4 text-primary" />
-            <time>{new Date(news.date).toLocaleDateString("vi-VN")}</time>
+            <time dateTime={news.date}>
+              {new Date(news.date).toLocaleDateString("vi-VN")}
+            </time>
           </div>
           <p className="break-words text-base text-muted-foreground">
             {news.excerpt}
           </p>
         </div>
 
-        <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden">
+        <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden">
           <CmsImage
             src={news.image}
             alt={news.title}
@@ -76,8 +83,12 @@ export default async function NewsDetailPage({
           />
         </div>
 
-        <ContentRenderer content={news.content} className="mt-8" />
+        <ContentRenderer
+          content={news.content}
+          className="mt-10 text-base leading-8"
+        />
       </div>
+      <ContactBanner />
     </article>
   );
 }

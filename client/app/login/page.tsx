@@ -3,11 +3,17 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+} from "lucide-react";
 import { useAuth } from "@/context/auth-context";
 import { Loader2 } from "lucide-react";
 
@@ -36,7 +42,11 @@ export default function LoginPage() {
       await login(email, password);
       router.push("/admin");
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.",
+      );
     } finally {
       setLoading(false);
     }
@@ -47,92 +57,156 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-svh bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <Card className="border-border/50 shadow-lg">
-          <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-2xl font-bold">
-              Đăng nhập Admin
-            </CardTitle>
-            <CardDescription>
-              Nhập email và mật khẩu để truy cập bảng điều khiển
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+    <main className="grid min-h-svh bg-white lg:grid-cols-2">
+      <div className="relative hidden flex-col overflow-hidden bg-[#fff6ec] p-12 lg:flex xl:p-16">
+        <Link
+          href="/"
+          aria-label="Quân Bảo — Trang chủ"
+          className="relative z-10 w-fit"
+        >
+          <Image
+            src="/assets/logo.png"
+            alt="Quân Bảo"
+            width={2001}
+            height={761}
+            sizes="190px"
+            priority
+            className="h-auto w-[190px] mix-blend-multiply"
+          />
+        </Link>
+        <div className="relative z-10 mb-10 mt-14">
+          <span className="eyebrow mb-6">Quân Bảo Construction</span>
+          <h2 className="section-title max-w-lg">
+            Quản lý nội dung
+            <br />
+            <span className="text-primary">website Quân Bảo.</span>
+          </h2>
+          <p className="mt-5 max-w-sm text-sm leading-7 text-muted-foreground">
+            Dự án, dịch vụ, tin tức và thông tin liên hệ.
+          </p>
+        </div>
+        <div className="image-frame relative min-h-72 flex-1">
+          <Image
+            src="/assets/home/3.avif"
+            alt="Không gian kiến trúc hiện đại"
+            fill
+            sizes="50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
+          <div className="absolute bottom-6 left-6 flex items-center gap-3 text-xs text-white">
+            <span className="size-1.5 rounded-full bg-white" />
+            Uy tín vững chắc — Xây dựng đẳng cấp
+          </div>
+          <ArrowUpRight className="absolute bottom-5 right-5 size-8 stroke-1 text-white" />
+        </div>
+      </div>
+      <div className="relative flex min-w-0 items-center justify-center px-6 py-24 sm:px-12">
+        <Link
+          href="/"
+          className="absolute left-6 top-8 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-primary sm:left-12"
+        >
+          <ArrowLeft className="size-3.5" />
+          Về trang chủ
+        </Link>
+        <div className="w-full max-w-[380px]">
+          <Image
+            src="/assets/logo.png"
+            alt="Quân Bảo"
+            width={2001}
+            height={761}
+            sizes="160px"
+            className="mb-10 h-auto w-40 lg:hidden"
+          />
+          <span className="mb-6 inline-flex size-12 items-center justify-center rounded-sm border border-primary/15 bg-primary/7">
+            <ShieldCheck className="size-6 stroke-[1.4] text-primary" />
+          </span>
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">
+            Quản trị website
+          </p>
+          <h1 className="text-3xl font-medium tracking-tight sm:text-4xl">
+            Đăng nhập
+          </h1>
+          <p className="mb-9 mt-4 text-sm leading-7 text-muted-foreground">
+            Đăng nhập để quản lý nội dung và các hoạt động trên website Quân
+            Bảo.
+          </p>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2.5">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                autoComplete="username"
+                placeholder="Email quản trị của bạn"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+                className="h-12 rounded-sm bg-muted/40 px-4 shadow-none"
+              />
+            </div>
+            <div className="space-y-2.5">
+              <Label htmlFor="password">Mật khẩu</Label>
+              <div className="relative">
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="admin@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  placeholder="Nhập mật khẩu"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={loading}
+                  className="h-12 rounded-sm bg-muted/40 pl-4 pr-12 shadow-none"
                 />
+                <button
+                  type="button"
+                  aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword(!showPassword)}
+                  disabled={loading}
+                  className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-muted-foreground hover:text-primary"
+                >
+                  {showPassword ? (
+                    <EyeOff className="size-4" />
+                  ) : (
+                    <Eye className="size-4" />
+                  )}
+                </button>
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">Mật khẩu</Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    disabled={loading}
-                    className="pr-10"
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                    onClick={() => setShowPassword(!showPassword)}
-                    disabled={loading}
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
-                    ) : (
-                      <Eye className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
-              </div>
-
-              {error && (
-                <div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
-                  {error}
-                </div>
-              )}
-
-              <Button
-                type="submit"
-                className="w-full rounded-none"
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Đang đăng nhập...
-                  </>
-                ) : (
-                  "Đăng nhập"
-                )}
-              </Button>
-            </form>
-
-            <div className="mt-4 text-center text-sm text-muted-foreground">
-              <Link href="/" className="hover:text-primary">
-                ← Quay về trang chủ
-              </Link>
             </div>
-          </CardContent>
-        </Card>
+            {error && (
+              <div
+                role="alert"
+                className="border-l-2 border-destructive bg-destructive/5 p-4 text-sm leading-6 text-destructive"
+              >
+                {error}
+              </div>
+            )}
+            <Button
+              type="submit"
+              className="h-12 w-full justify-between rounded-sm px-5"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span>Đang đăng nhập...</span>
+                  <Loader2 className="size-4 animate-spin" />
+                </>
+              ) : (
+                <>
+                  <span>Đăng nhập</span>
+                  <ArrowUpRight className="size-4" />
+                </>
+              )}
+            </Button>
+          </form>
+          <p className="mt-8 text-center text-[11px] leading-6 text-muted-foreground">
+            Khu vực dành riêng cho quản trị viên được cấp quyền.
+          </p>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

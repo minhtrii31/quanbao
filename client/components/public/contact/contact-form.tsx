@@ -50,7 +50,8 @@ export default function ContactForm() {
       nextErrors.email = "Email không đúng định dạng.";
     }
     if (!formData.subject.trim()) nextErrors.subject = "Vui lòng nhập chủ đề.";
-    if (!formData.message.trim()) nextErrors.message = "Vui lòng nhập nội dung.";
+    if (!formData.message.trim())
+      nextErrors.message = "Vui lòng nhập nội dung.";
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -87,40 +88,68 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border border-border bg-card p-4 sm:p-6">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <form
+      onSubmit={handleSubmit}
+      className="border border-border bg-white p-6 shadow-[0_12px_50px_-25px_#4c3b2920] sm:p-8 lg:p-10"
+    >
+      <div className="mb-8">
+        <h2 className="text-2xl font-medium leading-tight tracking-tight sm:text-3xl">
+          Gửi yêu cầu tư vấn
+        </h2>
+        <p className="mt-4 text-sm leading-7 text-muted-foreground">
+          Cho chúng tôi biết hạng mục, địa điểm và nhu cầu của bạn.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="contact-name">Họ tên</Label>
           <Input
             id="contact-name"
+            autoComplete="name"
+            placeholder="Họ và tên của bạn"
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
             value={formData.name}
             onChange={(event) => updateField("name", event.target.value)}
             aria-invalid={Boolean(errors.name)}
-            className="rounded-none"
+            className="min-h-12 rounded-sm border-border bg-muted/40 px-4 shadow-none"
           />
-          {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+          {errors.name && (
+            <p id="contact-name-error" className="text-xs text-destructive">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="contact-email">Email</Label>
           <Input
             id="contact-email"
+            autoComplete="email"
+            placeholder="ban@example.com"
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
             type="email"
             value={formData.email}
             onChange={(event) => updateField("email", event.target.value)}
             aria-invalid={Boolean(errors.email)}
-            className="rounded-none"
+            className="min-h-12 rounded-sm border-border bg-muted/40 px-4 shadow-none"
           />
-          {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+          {errors.email && (
+            <p id="contact-email-error" className="text-xs text-destructive">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="contact-phone">Điện thoại</Label>
           <Input
             id="contact-phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="Số điện thoại liên hệ"
             value={formData.phone}
             onChange={(event) => updateField("phone", event.target.value)}
-            className="rounded-none"
+            className="min-h-12 rounded-sm border-border bg-muted/40 px-4 shadow-none"
           />
         </div>
 
@@ -128,13 +157,19 @@ export default function ContactForm() {
           <Label htmlFor="contact-subject">Chủ đề</Label>
           <Input
             id="contact-subject"
+            placeholder="Bạn cần tư vấn về..."
+            aria-describedby={
+              errors.subject ? "contact-subject-error" : undefined
+            }
             value={formData.subject}
             onChange={(event) => updateField("subject", event.target.value)}
             aria-invalid={Boolean(errors.subject)}
-            className="rounded-none"
+            className="min-h-12 rounded-sm border-border bg-muted/40 px-4 shadow-none"
           />
           {errors.subject && (
-            <p className="text-xs text-destructive">{errors.subject}</p>
+            <p id="contact-subject-error" className="text-xs text-destructive">
+              {errors.subject}
+            </p>
           )}
         </div>
 
@@ -142,23 +177,39 @@ export default function ContactForm() {
           <Label htmlFor="contact-message">Nội dung</Label>
           <Textarea
             id="contact-message"
+            placeholder="Chia sẻ nhu cầu, quy mô hoặc ý tưởng công trình của bạn..."
+            aria-describedby={
+              errors.message ? "contact-message-error" : undefined
+            }
             value={formData.message}
             onChange={(event) => updateField("message", event.target.value)}
             aria-invalid={Boolean(errors.message)}
             rows={6}
-            className="rounded-none"
+            className="min-h-12 rounded-sm border-border bg-muted/40 px-4 shadow-none"
           />
           {errors.message && (
-            <p className="text-xs text-destructive">{errors.message}</p>
+            <p id="contact-message-error" className="text-xs text-destructive">
+              {errors.message}
+            </p>
           )}
         </div>
       </div>
 
       {statusMessage && (
-        <p className="mt-4 text-sm text-muted-foreground">{statusMessage}</p>
+        <p
+          role="status"
+          aria-live="polite"
+          className="mt-5 border-l-2 border-primary bg-muted/60 p-4 text-sm leading-7"
+        >
+          {statusMessage}
+        </p>
       )}
 
-      <Button type="submit" disabled={isSubmitting} className="mt-5 rounded-none">
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="mt-7 h-12 w-full rounded-sm text-sm"
+      >
         {isSubmitting ? (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         ) : (
